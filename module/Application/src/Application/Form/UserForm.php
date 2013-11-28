@@ -64,10 +64,23 @@ class UserForm extends Form implements ObjectManagerAwareInterface
                 )
             )
         ));
-
+        // Needs intl for php : sudo apt-get install php5-intl
+        $this->add(array(
+            'name' => 'birthday',
+            'type' => 'Zend\Form\Element\DateSelect',
+            'attributes' => array(),
+            'options' => array(
+                'label' => '__user_birthday',
+                'label_attributes' => array(
+                    'class' => 'control-label'
+                ),
+                'create_empty_option' => true,
+            )
+        ));
+        
         $this->add(array(
             'name' => 'email',
-            'type' => 'text',
+            'type' => 'email',
             'attributes' => array(),
             'options' => array(
                 'label' => '__label_user_email',
@@ -90,11 +103,32 @@ class UserForm extends Form implements ObjectManagerAwareInterface
         ));
 
         $this->add(array(
+            'name' => 'address',
+            'type' => 'text',
+            'attributes' => array(),
+            'options' => array(
+                'label' => '__user_address',
+                'label_attributes' => array(
+                    'class' => 'control-label'
+                )
+            )
+        ));
+
+        $this->add(array(
             'name' => 'submit',
             'type' => 'submit',
             'attributes' => array(
                 'class' => "btn btn-primary",
                 'value' => '__save'
+            )
+        ));
+
+        $this->add(array(
+            'name' => 'remove-user',
+            'type' => 'submit',
+            'attributes' => array(
+                'class' => "btn btn-danger",
+                'value' => '__remove_user'
             )
         ));
     }

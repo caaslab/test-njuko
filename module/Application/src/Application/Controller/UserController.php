@@ -43,13 +43,13 @@ class UserController extends AbstractActionController
 
                 /* @var $user \Application\Entity\User */
                 $user = $form->getData();
-
+//echo '<pre>user ';print_r((array) $user);echo '</pre>';
                 /* @var $serviceUser \Application\Service\UserService */
                 $serviceUser = $this->getServiceLocator()->get('application.service.user');
 
                 $serviceUser->saveUser($user);
 
-                $this->redirect()->toRoute('users');
+               $this->redirect()->toRoute('users');
             }
         }
 
@@ -60,9 +60,39 @@ class UserController extends AbstractActionController
 
     public function removeAction()
     {
-        //To do : Do Remove User
+       
+        /* @var $form \Application\Form\UserForm */
+        $form = $this->getServiceLocator()->get('formElementManager')->get('form.user');
 
-        $this->redirect()->toRoute('users');
+        $userToRemove = $this->getServiceLocator()->get('entity_manager')
+            ->getRepository('Application\Entity\User')
+            ->find($this->params()->fromRoute('user_id'));
+
+        $id = $userToRemove['id'];
+        if (!$id) {
+                return $this->redirect()->toRoute('users');
+        }
+        $form->bind($userToRemove);
+        $data = $this->prg();
+
+        if ($data instanceof \Zend\Http\PhpEnvironment\Response) {
+            return $data;
+        }
+
+        if ($data != false) {
+            $form->setData($data);
+
+                /* @var $serviceUser \Application\Service\UserService */
+                $serviceUser = $this->getServiceLocator()->get('application.service.user');
+
+               //Remove the user
+                $serviceUser->removeUser($userToRemove);
+                $this->redirect()->toRoute('users');
+        }
+
+        return new ViewModel(array(
+            'form'  =>  $form, 'userToRemove'   =>  $userToRemove
+        ));
     }
 
     public function editAction()
@@ -76,6 +106,9 @@ class UserController extends AbstractActionController
 
         $form->bind($userToEdit);
         $form->get('firstname')->setValue($userToEdit->getFirstname());
+        $form->get('lastname')->setValue($userToEdit->getLastName());
+        $form->get('birthday')->setValue($userToEdit->getBirthday());
+        $form->get('address')->setValue($userToEdit->getAddress());
 
         $data = $this->prg();
 
@@ -89,8 +122,10 @@ class UserController extends AbstractActionController
 
                 /* @var $user \Application\Entity\User */
                 $user = $form->getData();
+                $serviceUser = $this->getServiceLocator()->get('application.service.user');
 
                 //Save the user
+                $serviceUser->saveUser($user);
 
                 $this->redirect()->toRoute('users');
             }

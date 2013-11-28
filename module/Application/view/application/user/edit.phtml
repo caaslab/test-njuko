@@ -21,6 +21,16 @@ echo $this->form()->openTag($form);
     </div>
 
     <div class="control-group">
+        <?= $this->formLabel($form->get('birthday')); ?>
+        <div class="controls">
+            <?= $this->formElement($form->get('birthday')); ?>
+            <span class="help-block errors"><?= $this->formElementErrors($form->get('birthday')); ?></span>
+        </div>
+    </div>
+
+   
+
+    <div class="control-group">
         <?= $this->formLabel($form->get('email')); ?>
         <div class="controls">
             <?= $this->formElement($form->get('email')); ?>
@@ -35,6 +45,16 @@ echo $this->form()->openTag($form);
             <span class="help-block errors"><?= $this->formElementErrors($form->get('password')); ?></span>
         </div>
     </div>
+
+    <div class="control-group">
+        <?= $this->formLabel($form->get('address')); ?>
+        <div class="controls">
+            <?= $this->formElement($form->get('address')); ?>
+            <span class="help-block errors"><?= $this->formElementErrors($form->get('address')); ?></span>
+        </div>
+    </div>
+
+   
 
     <div class="form-actions">
         <?= $this->formSubmit($form->get('submit')); ?>

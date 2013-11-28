@@ -1,0 +1,16 @@
+<?php
+$form = $this->form;
+$form->prepare();
+echo $this->form()->openTag($form);
+?>
+<div><?=$this->translate('__msg_user_confirm_remove')?>
+    <strong><?=$userToRemove['profile']['firstname']?> <?=$userToRemove['profile']['lastname']?></strong> ? 
+</div>
+ 
+    <div class="form-actions">
+        <?= $this->formSubmit($form->get('remove-user')); ?>        
+           <a href="<?=$this->url('users')?>" class="btn btn-primary">
+            <?=$this->translate('__cancel')?>       
+           </a>
+    </div>
+<?= $this->form()->closeTag(); ?>

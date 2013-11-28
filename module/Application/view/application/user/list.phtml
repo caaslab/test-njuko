@@ -1,7 +1,6 @@
 <a href="<?=$this->url('users/add')?>" class='btn btn-primary'>
     <?=$this->translate('__add_user')?>
 </a>
-
 <br/>
 <br/>
 
@@ -19,6 +18,12 @@
             </th>
             <th>
                 <?=$this->translate('__user_email')?>
+            </th>
+            <th>
+                <?=$this->translate('__user_address')?>
+            </th>
+            <th>
+                <?=$this->translate('__user_birthday')?>
             </th>
             <th></th>
         </tr>
@@ -43,6 +48,12 @@
             <a href='mailto:<?=$user['email']?>'>
                 <?=$user['email']?>
             </a>
+        </td>
+        <td>
+            <?=$user['profile']['address']?>
+        </td>
+        <td>
+            <?=$user->getBirthday()->format('d/m/Y')?>
         </td>
         <td>
             <a href="<?=$this->url('users/edit', array('user_id'   =>  $user['id']))?>" class="btn btn-success">

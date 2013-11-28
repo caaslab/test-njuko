@@ -48,6 +48,15 @@ class Profile extends EntityAbstract
      * @var string
      */
     protected $firstName;
+    
+    /**
+     * Birthday
+     *
+     * @ORM\Column(type="date")
+     *
+     * @var date
+     */
+    protected $birthday;
 
     /**
      * Address
@@ -133,6 +142,30 @@ class Profile extends EntityAbstract
     {
         return $this->firstName;
     }
+
+    /**
+     * Set Birthday
+     *
+     * @param string $birthday
+     * @return Profile
+     */
+    public function setBirthday($birthday)
+    {  
+        $this->birthday = \DateTime::createFromFormat('Y-m-d', $birthday);
+
+        return $this;
+    }
+
+    /**
+     * Get Birthday
+     *
+     * @return date
+     */
+    public function getBirthday()
+    {
+        return $this->birthday;
+    }
+
 
     /**
      * Set address
