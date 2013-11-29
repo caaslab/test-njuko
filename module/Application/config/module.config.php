@@ -52,13 +52,14 @@ return array(
                 ),
             ),
             'users' =>  array(
-                'type'  =>  'Literal',
+                'type'  =>  'Segment',
                 'options'   =>  array(
-                    'route' =>  '/users',
+                    'route' =>  '/users[/:orderBy]',
                     'defaults'  =>  array(
                         '__NAMESPACE__' => 'Application\Controller',
                         'controller'    => 'User',
                         'action'        => 'list',
+                        'orderBy'       => 'id',
                     )
                 ),
                 'may_terminate' => true,

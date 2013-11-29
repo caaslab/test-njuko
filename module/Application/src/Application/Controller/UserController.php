@@ -14,13 +14,25 @@ use Zend\View\Model\ViewModel;
 
 class UserController extends AbstractActionController
 {
+
+    /*
+    *
+    *
+    * 
+    */
     public function listAction()
     {
-
+        //@todo implement orderBy for profile table
+        //$fieldmap = array('firstname', 'lastname', 'birthday', 'address', 'email');
+        //@todo get dynamic $fieldmap
+        $fieldmap = array('email');
+        $orderBy = $this->params()->fromRoute('orderBy');
+        $orderBy = in_array($orderBy, $fieldmap) ? $orderBy : 'id';
+        
         $users = $this->getServiceLocator()->get('entity_manager')
             ->getRepository('Application\Entity\User')
-            ->findAll();
-
+            ->findBy(array(), array($orderBy => 'ASC'));
+ 
         return new ViewModel(array(
             'users' =>  $users
         ));
@@ -43,7 +55,7 @@ class UserController extends AbstractActionController
 
                 /* @var $user \Application\Entity\User */
                 $user = $form->getData();
-//echo '<pre>user ';print_r((array) $user);echo '</pre>';
+
                 /* @var $serviceUser \Application\Service\UserService */
                 $serviceUser = $this->getServiceLocator()->get('application.service.user');
 

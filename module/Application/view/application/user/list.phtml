@@ -8,22 +8,26 @@
     <thead>
         <tr>
             <th>
-                <?=$this->translate('__user_id')?>
+                <a href="<?=$this->url('users', array('orderBy'   =>  'id'))?>"> <?=$this->translate('__user_id')?> </a>
             </th>
             <th>
-                <?=$this->translate('__user_firstname')?>
+               <!-- <a href="<?=$this->url('users', array('orderBy'   =>  'firstname'))?>"><?=$this->translate('__user_firstname')?> </a> -->
+               <?=$this->translate('__user_firstname')?>
             </th>
             <th>
-                <?=$this->translate('__user_lastname')?>
+                <!-- <a href="<?=$this->url('users', array('orderBy'   =>  'lastname'))?>"><?=$this->translate('__user_lastname')?> </a>-->
+               <?=$this->translate('__user_lastname')?>
             </th>
             <th>
-                <?=$this->translate('__user_email')?>
+                <a href="<?=$this->url('users', array('orderBy'   =>  'email'))?>"><?=$this->translate('__user_email')?> </a>
             </th>
             <th>
-                <?=$this->translate('__user_address')?>
+               <!--  <a href="<?=$this->url('users', array('orderBy'   =>  'address'))?>"><?=$this->translate('__user_address')?> </a> -->
+               <?=$this->translate('__user_address')?>
             </th>
             <th>
-                <?=$this->translate('__user_birthday')?>
+                <!-- <a href="<?=$this->url('users', array('orderBy'   =>  'birthday'))?>"><?=$this->translate('__user_birthday')?> </a> -->
+               <?=$this->translate('__user_birthday')?>
             </th>
             <th></th>
         </tr>
